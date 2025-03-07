@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Entrada na Festa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: auto;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .warning {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Controle de Entrada na Festa</h2>
+        <label for="idade">Digite sua idade:</label><br>
+        <input type="number" id="idade" placeholder="Idade" required>
+        <br>
+        <button onclick="verificarIdade()">Entrar</button>
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        function verificarIdade() {
+            const idade = document.getElementById("idade").value;
+            const resultado = document.getElementById("resultado");
+
+            if (idade === "") {
+                resultado.textContent = "Por favor, insira sua idade.";
+                resultado.className = "error";
+            } else if (isNaN(idade) || idade < 0) {
+                resultado.textContent = "Idade inválida! Insira um número válido.";
+                resultado.className = "error";
+            } else if (idade < 18) {
+                resultado.textContent = "Menor de 18 anos, entrada proibida!";
+                resultado.className = "error";
+            } else if (idade >= 18 && idade < 65) {
+                resultado.textContent = "Bem-vindo à festa!";
+                resultado.className = "success";
+            } else {
+                resultado.textContent = "Fugiu do asilo?";
+                resultado.className = "warning";
+            }
+        }
+    </script>
+
+</body>
+</html>
